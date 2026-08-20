@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HourTime - Diagnostic du Temps: Évaluez votre manière d'utiliser votre temps">
+    <meta name="theme-color" content="#6366f1">
+    <title>HourTime - Diagnostic du Temps</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">⏱️</span>
+                    <span class="logo-text">HourTime</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#accueil" class="nav-link active">Accueil</a>
+                    <a href="#diagnostic" class="nav-link">Diagnostic</a>
+                    <a href="#resultats" class="nav-link">Résultats</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Section Accueil -->
+        <section id="accueil" class="section hero">
+            <div class="hero-content">
+                <h1>Bienvenue dans HourTime</h1>
+                <p class="subtitle">Évaluez votre manière d'utiliser votre temps</p>
+                <p class="description">
+                    Répondez à un diagnostic complet pour comprendre votre rapport au temps 
+                    et recevoir des recommandations personnalisées.
+                </p>
+                <button class="btn btn-primary btn-large" onclick="goToDiagnostic()">
+                    Commencer le Diagnostic
+                    <span class="btn-arrow">→</span>
+                </button>
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="feature-icon">📊</span>
+                        <h3>Diagnostic Complet</h3>
+                        <p>Questions adaptées à votre profil</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📈</span>
+                        <h3>Résultats Détaillés</h3>
+                        <p>Analyse personnalisée de vos résultats</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">💡</span>
+                        <h3>Recommandations</h3>
+                        <p>Conseils pour optimiser votre temps</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Diagnostic -->
+        <section id="diagnostic" class="section diagnostic-section">
+            <div class="section-header">
+                <h2>Diagnostic du Temps</h2>
+                <p>Répondez aux questions suivantes pour évaluer votre gestion du temps</p>
+            </div>
+
+            <div class="diagnostic-container">
+                <!-- Barre de progression -->
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">
+                    Question <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span>
+                </div>
+
+                <!-- Questions du diagnostic -->
+                <div class="questions-wrapper">
+                    <div id="questionContainer" class="question-container"></div>
+                </div>
+
+                <!-- Boutons de navigation -->
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" style="display:none;">
+                        ← Précédent
+                    </button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">
+                        Suivant →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Résultats -->
+        <section id="resultats" class="section results-section" style="display:none;">
+            <div class="section-header">
+                <h2>Vos Résultats</h2>
+                <p>Voici votre analyse personnalisée</p>
+            </div>
+
+            <div class="results-container">
+                <!-- Score Global -->
+                <div class="score-card global-score">
+                    <div class="score-value" id="globalScore">0</div>
+                    <div class="score-label">Score Global</div>
+                    <div class="score-description" id="scoreDescription"></div>
+                </div>
+
+                <!-- Catégories -->
+                <div class="categories-grid" id="categoriesGrid"></div>
+
+                <!-- Recommandations -->
+                <div class="recommendations-card">
+                    <h3>Recommandations Personnalisées</h3>
+                    <ul class="recommendations-list" id="recommendationsList"></ul>
+                </div>
+
+                <!-- Actions -->
+                <div class="results-actions">
+                    <button class="btn btn-primary" onclick="restartDiagnostic()">
+                        Recommencer le diagnostic
+                    </button>
+                    <button class="btn btn-secondary" onclick="downloadResults()">
+                        Télécharger les résultats
+                    </button>
+                    <button class="btn btn-outline" onclick="shareResults()">
+                        Partager les résultats
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2026 HourTime. Tous droits réservés.</p>
+                <div class="footer-links">
+                    <a href="#privacy">Politique de Confidentialité</a>
+                    <a href="#terms">Conditions d'Utilisation</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="diagnostic.js"></script>
+</body>
+</html>
