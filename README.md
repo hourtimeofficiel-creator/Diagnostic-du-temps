@@ -1,290 +1,245 @@
-# ⏰ HourTime - Diagnostic du Temps
+# HourTime - Diagnostic du Temps 🕐
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Status](https://img.shields.io/badge/status-production-green.svg)
-![Version](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)
+Une application web interactive pour évaluer votre manière d'utiliser votre temps et recevoir des recommandations personnalisées.
 
-## 📋 Vue d'ensemble
+## 🚀 Accès Rapide
 
-**HourTime Diagnostic** est une application web interactive qui aide les utilisateurs à comprendre leur relation au temps en 28 questions. Cette application fournit un diagnostic complet avec un profil temporel personnalisé, une analyse des quatre mécanismes clés, et un plan d'action sur 7 jours.
+**🌐 [Lancer le diagnostic directement](https://hourtimeofficiel-creator.github.io/diagnostic-du-temps/)**
 
-### ✨ Caractéristiques principales
-
-- **Quiz interactif** : 28 questions réparties sur 7 profils et 4 mécanismes
-- **Diagnostic personnalisé** : Identification du profil temporel dominant et secondaire
-- **Analyse complète** : Évaluation des 4 mécanismes (structure, fluidité, opportunisme, ancrage)
-- **Identification des voleurs de temps** : Détection des 3 principales sources de distraction
-- **Plan d'action progressif** : 7 jours d'actions adaptées à chaque profil
-- **Rapport PDF** : Téléchargement du diagnostic complet en PDF
-- **Stockage local** : Vos données restent privées et ne quittent jamais votre navigateur
-- **Design premium** : Interface élégante avec palette de couleurs sophistiquées
-- **Responsive** : Fonctionne parfaitement sur tous les appareils
+Aucune installation requise ! Ouvrez simplement le lien ci-dessus dans votre navigateur.
 
 ---
 
-## 🚀 Démarrage rapide
+## 📋 Caractéristiques
 
-### Installation
-
-1. **Cloner le repository**
-   ```bash
-   git clone https://github.com/hourtimeofficiel-creator/diagnostic-du-temps.git
-   cd diagnostic-du-temps
-   ```
-
-2. **Ouvrir l'application**
-   - Ouvrir directement `index.html` dans un navigateur moderne
-   - Ou servir via un serveur web :
-   ```bash
-   # Avec Python 3
-   python -m http.server 8000
-   
-   # Ou avec Node.js
-   npx http-server
-   ```
-
-3. **Accéder à l'application**
-   - Navigateur : `http://localhost:8000`
-
-### Prérequis
-
-- Navigateur moderne (Chrome, Firefox, Safari, Edge)
-- JavaScript activé
-- Support ES6 Modules
-- Pas de dépendances externes (hormis jsPDF pour l'export PDF)
+✅ **Diagnostic Complet** - 10 questions pertinentes sur votre gestion du temps  
+✅ **Résultats Instantanés** - Analyse personnalisée de votre profil  
+✅ **Recommandations** - Conseils adaptés à vos résultats  
+✅ **Stockage Local** - Vos réponses sont sauvegardées automatiquement  
+✅ **Responsive** - Fonctionne sur ordinateur, tablette et mobile  
+✅ **Téléchargement PDF** - Exportez vos résultats en PDF  
+✅ **Partage** - Partez vos résultats avec vos amis  
 
 ---
 
-## 📁 Structure du projet
+## 📊 Comment ça Marche ?
+
+### 1️⃣ **Commencez le Diagnostic**
+Cliquez sur le bouton "Commencer le Diagnostic" sur la page d'accueil.
+
+### 2️⃣ **Répondez aux Questions**
+Répondez honnêtement aux 10 questions sur :
+- Gestion du temps
+- Planification
+- Priorités
+- Distractions
+- Repos & Détente
+- Relations (famille/amis)
+- Santé
+- Développement personnel
+- Satisfaction
+- Objectifs
+
+### 3️⃣ **Obtenez vos Résultats**
+Recevez :
+- 📈 Un score global de 0 à 100%
+- 📊 Des scores par catégorie
+- 💡 Recommandations personnalisées
+- 📄 Options pour télécharger ou partager
+
+---
+
+## 🛠️ Structure du Projet
 
 ```
 diagnostic-du-temps/
-├── index.html                 # Page principale
-├── css/
-│   └── styles.css            # Feuille de styles complète
-├── js/
-│   ├── app.js                # Orchestrateur principal
-│   ├── questions.js          # Base de données des questions
-│   ├── profiles.js           # Définition des profils et mécanismes
-│   ├── scoring.js            # Logique de calcul des résultats
-│   ├── storage.js            # Gestion du stockage local
-│   ├── results.js            # Traitement et formatage des résultats
-│   └── pdf-generator.js      # Génération des rapports PDF
-├── assets/                   # Images et ressources (optionnel)
-└── README.md                 # Cette documentation
+├── index.html              # Page HTML principale
+├── homepage.html           # Page d'accueil alternative
+├── styles.css              # Styles CSS
+├── diagnostic.js           # Logique du diagnostic
+├── README.md               # Ce fichier
+├── SECURITY.md             # Politique de sécurité
+├── CODE_OF_CONDUCT.md      # Code de conduite
+└── .gitignore              # Fichiers à ignorer
 ```
 
 ---
 
-## 🎯 Architecture
+## 🎨 Technologies Utilisées
 
-### Flux d'application
-
-```
-[Accueil] → [Quiz] → [Calcul] → [Résultats] → [Export PDF]
-                ↓
-          [Stockage Local]
-```
-
-### Modules JavaScript
-
-#### 1. **app.js** - Orchestrateur principal
-- Gère la navigation entre les pages
-- Contrôle l'affichage du quiz et des résultats
-- Gère les événements utilisateur
-- Coordonne le stockage et le calcul des résultats
-
-#### 2. **questions.js** - Base de données
-- Contient les 28 questions du diagnostic
-- Structure : `{ id, text, context, category, mechanism }`
-
-#### 3. **profiles.js** - Profils et mécanismes
-- Définit les 7 profils temporels
-- Définit les 4 mécanismes
-- Configure les seuils de scoring
-
-#### 4. **scoring.js** - Logique de calcul
-- Calcule les scores des mécanismes
-- Identifie le profil dominant
-- Génère les recommandations
-
-#### 5. **storage.js** - Gestion du stockage
-- Sauvegarde les réponses au fur et à mesure
-- Restaure la progression en cas de rechargement
-- Sauvegarde les résultats finaux
-
-#### 6. **results.js** - Traitement des résultats
-- Formate les résultats pour l'affichage
-- Génère le plan d'action
-- Prépare les données pour le PDF
-
-#### 7. **pdf-generator.js** - Export PDF
-- Génère le rapport PDF complet
-- Crée un design professionnel
-- Gère le téléchargement
+- **HTML5** - Structure sémantique
+- **CSS3** - Design moderne et responsive
+- **JavaScript (ES6+)** - Logique interactive
+- **LocalStorage API** - Persistance des données
+- **html2pdf.js** - Génération de PDF
 
 ---
 
-## 🎨 Design et couleurs
+## 💾 Stockage Local
 
-### Palette de couleurs
+Vos réponses sont automatiquement sauvegardées dans le stockage local de votre navigateur :
+- Les données restent **privées** sur votre appareil
+- Vous pouvez **continuer plus tard** sans perdre votre progression
+- Aucune donnée n'est envoyée à un serveur
 
-```
-Noir charbon        #0D0D0F   (Fond, en-têtes)
-Or satiné          #C9A45C   (Accent principal)
-Or clair           #E2C681   (Surbrillance)
-Taupe              #F2EBDD   (Fond secondaire)
-Crème              #FEFDFB   (Fond principal)
-Bordeaux           #7F1725   (Accents forts)
-Gris taupe         #B4B5AE   (Texte secondaire)
-```
-
-### Responsive Design
-
-- **Desktop** (1024px+) : Pleine largeur optimisée
-- **Tablette** (768px-1023px) : Layout adapté
-- **Mobile** (< 768px) : Single column responsive
+**Pour effacer vos données :**
+1. Ouvrez les outils développeur (F12)
+2. Allez dans Application → LocalStorage
+3. Supprimez les entrées `diagnosticResponses` et `currentQuestion`
 
 ---
 
-## 📊 Profils temporels
+## 📱 Compatibilité
 
-### 7 Profils identifiés
+| Navigateur | Desktop | Mobile |
+|-----------|---------|--------|
+| Chrome    | ✅      | ✅     |
+| Firefox   | ✅      | ✅     |
+| Safari    | ✅      | ✅     |
+| Edge      | ✅      | ✅     |
 
-1. **Aligné** - Maîtrise totale du temps
-2. **Optimiseur** - Toujours à la recherche de gains
-3. **Gestionnaire** - Organisé et méthodique
-4. **Flexible** - Adaptable et opportuniste
-5. **Procrastinateur** - Reporte constamment
-6. **Débordé** - Submergé par les tâches
-7. **Nomade** - Pas de routine établie
-
-### 4 Mécanismes
-
-1. **Structure** : Organisation et planification
-2. **Fluidité** : Adaptabilité et flexibilité
-3. **Opportunisme** : Capacité à saisir les occasions
-4. **Ancrage** : Stabilité et enracinement
+**Recommandation :** Utilisez un navigateur moderne (version 2020+) pour la meilleure expérience.
 
 ---
 
-## 💾 Stockage des données
+## 🚀 Déploiement sur GitHub Pages
 
-### LocalStorage
+Ce projet est automatiquement déployé sur GitHub Pages via la branche `main`.
 
-L'application utilise exclusivement le `localStorage` du navigateur. Vos données restent 100% locales.
+### Configuration
 
-### Confidentialité
+1. **Accédez aux paramètres du repository**
+2. Allez à **Pages** dans le menu de gauche
+3. Sélectionnez **main** comme source
+4. L'application sera disponible à : `https://hourtimeofficiel-creator.github.io/diagnostic-du-temps/`
 
-✅ **Données 100% locales** - Aucune transmission vers un serveur
-✅ **Pas de cookies de suivi** - Votre vie privée est respectée
-✅ **Stockage client uniquement** - Vous contrôlez vos données
+### Mise à jour
 
----
-
-## 🛠️ Développement
-
-### Ajouter une nouvelle question
-
-Éditer `js/questions.js` et ajouter une nouvelle entrée.
-
-### Ajouter un nouveau profil
-
-1. Éditer `js/profiles.js`
-2. Configurer les seuils dans `scoring.js`
-
-### Personnaliser les couleurs
-
-Éditer les variables CSS dans `css/styles.css`
+Toute modification sur la branche `main` est automatiquement publiée (peut prendre quelques minutes).
 
 ---
 
-## 🔒 Sécurité
+## 📈 Interprétation des Résultats
 
-- ✅ Pas de données sensibles stockées
-- ✅ Pas de connexion utilisateur requise
-- ✅ Pas de serveur (décentralisé)
-- ✅ HTTPS recommandé pour le déploiement
-
----
-
-## 🐛 Dépannage
-
-### Le quiz ne sauvegarde pas les réponses
-
-Vérifier que le localStorage est activé dans le navigateur.
-
-### Le PDF ne génère pas
-
-Vérifier que jsPDF est chargé correctement.
-
-### L'application est lente
-
-Vider le cache et le localStorage.
+| Score | Interprétation | Action |
+|-------|----------------|--------|
+| 90-100% | 🌟 Excellent | Continuez votre excellent travail ! |
+| 75-89% | 👍 Très Bon | Maintenez cet équilibre |
+| 60-74% | 📊 Moyen | Il y a place pour l'amélioration |
+| 45-59% | ⚠️ À Améliorer | Des changements sont nécessaires |
+| < 45% | 🆘 Critique | Une intervention est urgente |
 
 ---
 
-## 📈 Performance
+## 💡 Recommandations Automatiques
 
-- Taille totale : ~150KB
-- Temps de chargement : < 2 secondes
-- Génération PDF : < 3 secondes
+L'application génère des recommandations personnalisées basées sur :
+
+- **Scores faibles** en gestion du temps → Conseils de base
+- **Scores faibles** en priorités → Matrice d'Eisenhower
+- **Scores hauts** en distractions → Limiter les perturbations
+- **Scores faibles** en repos → Importance du sommeil
+- Et bien d'autres...
+
+---
+
+## 🔒 Sécurité & Confidentialité
+
+- ✅ **Aucune donnée collectée** - Tout est local
+- ✅ **Aucun suivi** - Pas d'analytics
+- ✅ **Aucune publicité** - Expérience pure
+- ✅ **HTTPS** - Connexion sécurisée sur GitHub Pages
+- ✅ **Open Source** - Code visible et vérifiable
+
+Voir [SECURITY.md](SECURITY.md) pour plus de détails.
+
+---
+
+## 📝 Licence
+
+Ce projet est sous licence **MIT**. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
 ---
 
 ## 🤝 Contribution
 
-Les contributions sont bienvenues ! Pour contribuer :
+Les contributions sont bienvenues ! 
 
-1. Fork le repository
-2. Créer une branche (`git checkout -b feature/ma-feature`)
-3. Commit vos changements
-4. Push vers la branche
-5. Créer une Pull Request
+### Comment contribuer :
 
----
-
-## 📄 Licence
-
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+1. **Fork** le repository
+2. Créez une **branche feature** (`git checkout -b feature/AmazingFeature`)
+3. **Committez** vos modifications (`git commit -m 'Add some AmazingFeature'`)
+4. **Poussez** vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrez une **Pull Request**
 
 ---
 
-## 📞 Support et contact
+## 📞 Support & Contact
 
-- 📧 Email : contact@hourtime.fr
-- 🌐 Site web : https://www.hourtime.fr
-- 📱 Instagram : @hourtime.officiel
+- 📧 **Email** : `contact@hourtime.fr`
+- 🐛 **Signaler un bug** : [Issues](https://github.com/hourtimeofficiel-creator/diagnostic-du-temps/issues)
+- 💬 **Discussions** : [Discussions](https://github.com/hourtimeofficiel-creator/diagnostic-du-temps/discussions)
+- 🔒 **Sécurité** : `security@hourtime.fr`
 
 ---
 
-## 🗺️ Feuille de route
+## 🎯 Roadmap
 
-### v1.0.0 (Actuel)
-- ✅ Quiz complet 28 questions
-- ✅ Diagnostic des profils
+### Version 1.0 (Actuelle)
+- ✅ Diagnostic de base (10 questions)
+- ✅ Résultats instantanés
+- ✅ Recommandations personnalisées
 - ✅ Export PDF
-- ✅ Stockage local
-- ✅ Responsive design
+- ✅ Partage
 
-### v1.1.0 (Prochainement)
-- 🔜 Mode hors ligne (PWA)
-- 🔜 Export en plusieurs formats
-- 🔜 Historique des diagnostics
+### Version 2.0 (Prévue)
+- 📅 Diagnostic complet (28 questions)
+- 📊 Graphiques avancés
+- 🔐 Compte utilisateur (optionnel)
+- 💾 Historique des résultats
+- 🎯 Plan d'action personnalisé
 
-### v2.0.0 (Futur)
-- 🔜 Suivi intégré sur 7 jours
-- 🔜 Communauté utilisateurs
-- 🔜 Gamification
+### Version 3.0 (Futur)
+- 📱 Application mobile
+- 🤖 IA pour recommandations avancées
+- 👥 Comparaison avec d'autres utilisateurs
+- 📈 Suivi des progrès
+- 🎓 Modules de formation
 
 ---
 
-<div align="center">
+## 📚 Ressources Utiles
 
-### ⏰ Prenez le contrôle de votre temps avec HourTime
+- [OWASP - Gestion du Temps](https://owasp.org/)
+- [Matrice d'Eisenhower](https://www.eisenhower.me/)
+- [GTD - Getting Things Done](https://gettingthingsdone.com/)
+- [Pomodoro Technique](https://www.pomodorotechnique.com/)
 
-[🚀 Commencer le diagnostic](index.html) • [💬 Support](https://github.com/hourtimeofficiel-creator/diagnostic-du-temps/issues)
+---
 
-**Made with ❤️ by HourTime Team**
+## 🙏 Remerciements
 
-</div>
+Merci à tous ceux qui ont contribué à ce projet et à la communauté HourTime.
+
+---
+
+## 📄 Fichiers Importants
+
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) - Code de conduite communautaire
+- [SECURITY.md](SECURITY.md) - Politique de sécurité
+- [LICENSE](LICENSE) - Licence MIT
+
+---
+
+## 🎉 Commencez Maintenant
+
+**[Lancer le diagnostic →](https://hourtimeofficiel-creator.github.io/diagnostic-du-temps/)**
+
+---
+
+**Dernière mise à jour :** Août 2026  
+**Version :** 1.0  
+**Auteur :** HourTime Team
+
+*Évaluez votre temps, transformez votre vie ! ⏱️*
