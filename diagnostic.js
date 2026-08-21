@@ -1,6 +1,7 @@
 /* ============================================
    DIAGNOSTIC.JS - HourTime Diagnostic
    Logique complète du diagnostic interactif
+   28 questions pour une analyse approfondie
    ============================================ */
 
 // ============================================
@@ -126,6 +127,223 @@ const diagnosticQuestions = [
             { text: 'Partiellement - Certains sont clairs', value: 3 },
             { text: 'Largement - La plupart sont définis', value: 4 },
             { text: 'Totalement - J\'ai des objectifs précis', value: 5 }
+        ]
+    },
+    // ====== NOUVELLES QUESTIONS (11-28) ======
+    {
+        id: 11,
+        category: 'productivite',
+        question: 'Êtes-vous productif lors de vos heures de travail ?',
+        options: [
+            { text: 'Très peu - Beaucoup de temps perdu', value: 1 },
+            { text: 'Peu - Pas toujours concentré', value: 2 },
+            { text: 'Modérément - Certaines périodes sont productives', value: 3 },
+            { text: 'Beaucoup - Je suis généralement efficace', value: 4 },
+            { text: 'Énormément - Je suis très productif', value: 5 }
+        ]
+    },
+    {
+        id: 12,
+        category: 'loisirs',
+        question: 'Consacrez-vous du temps à vos loisirs et passions ?',
+        options: [
+            { text: 'Jamais - Je n\'ai pas le temps', value: 1 },
+            { text: 'Rarement - Seulement pendant les vacances', value: 2 },
+            { text: 'Parfois - Quelques fois par mois', value: 3 },
+            { text: 'Souvent - Régulièrement chaque semaine', value: 4 },
+            { text: 'Toujours - C\'est une part importante de ma semaine', value: 5 }
+        ]
+    },
+    {
+        id: 13,
+        category: 'travail',
+        question: 'Travaillez-vous en dehors de vos heures prévues ?',
+        options: [
+            { text: 'Oui, constamment - J\'ai du mal à déconnecter', value: 1 },
+            { text: 'Souvent - Au moins 2-3 fois par semaine', value: 2 },
+            { text: 'Parfois - Occasionnellement', value: 3 },
+            { text: 'Rarement - Seulement en cas d\'urgence', value: 4 },
+            { text: 'Jamais - Je maintiens une limite claire', value: 5 }
+        ]
+    },
+    {
+        id: 14,
+        category: 'sommeil',
+        question: 'Dormez-vous suffisamment chaque nuit ?',
+        options: [
+            { text: 'Jamais - Je dors moins de 5 heures', value: 1 },
+            { text: 'Rarement - 5-6 heures généralement', value: 2 },
+            { text: 'Parfois - 6-7 heures irrégulièrement', value: 3 },
+            { text: 'Souvent - 7-8 heures régulièrement', value: 4 },
+            { text: 'Toujours - 8+ heures et repos de qualité', value: 5 }
+        ]
+    },
+    {
+        id: 15,
+        category: 'technologie',
+        question: 'Comment les réseaux sociaux/techno impactent-ils votre temps ?',
+        options: [
+            { text: 'Très négativement - Cela me consume', value: 1 },
+            { text: 'Négativement - J\'en perds trop', value: 2 },
+            { text: 'Neutre - Impact modéré', value: 3 },
+            { text: 'Positivement - Je les utilise bien', value: 4 },
+            { text: 'Très positivement - Je les maîtrise totalement', value: 5 }
+        ]
+    },
+    {
+        id: 16,
+        category: 'equilibre_vie_travail',
+        question: 'Avez-vous un bon équilibre vie professionnelle-personnelle ?',
+        options: [
+            { text: 'Aucun - C\'est très déséquilibré', value: 1 },
+            { text: 'Faible - Plutôt orienté vers le travail', value: 2 },
+            { text: 'Moyen - Pas toujours équilibré', value: 3 },
+            { text: 'Bon - Généralement bien équilibré', value: 4 },
+            { text: 'Excellent - Parfaitement équilibré', value: 5 }
+        ]
+    },
+    {
+        id: 17,
+        category: 'stress',
+        question: 'Quel est votre niveau de stress quotidien ?',
+        options: [
+            { text: 'Extrême - Constamment débordé', value: 1 },
+            { text: 'Élevé - Souvent stressé', value: 2 },
+            { text: 'Modéré - Normal mais gérable', value: 3 },
+            { text: 'Faible - Plutôt serein', value: 4 },
+            { text: 'Très faible - Très calme', value: 5 }
+        ]
+    },
+    {
+        id: 18,
+        category: 'routine',
+        question: 'Avez-vous une routine matinale bien établie ?',
+        options: [
+            { text: 'Aucune - C\'est le chaos le matin', value: 1 },
+            { text: 'Faible - Très irrégulière', value: 2 },
+            { text: 'Modérée - Plutôt une routine', value: 3 },
+            { text: 'Bonne - Une bonne routine', value: 4 },
+            { text: 'Excellente - Très structurée et efficace', value: 5 }
+        ]
+    },
+    {
+        id: 19,
+        category: 'apprentissage',
+        question: 'Consacrez-vous du temps à l\'apprentissage continu ?',
+        options: [
+            { text: 'Jamais - Pas d\'apprentissage', value: 1 },
+            { text: 'Rarement - Très occasionnel', value: 2 },
+            { text: 'Parfois - Quand j\'ai du temps', value: 3 },
+            { text: 'Souvent - Régulièrement', value: 4 },
+            { text: 'Toujours - C\'est une habitude quotidienne', value: 5 }
+        ]
+    },
+    {
+        id: 20,
+        category: 'delegation',
+        question: 'Déléguez-vous les tâches appropriées ?',
+        options: [
+            { text: 'Jamais - Je fais tout moi-même', value: 1 },
+            { text: 'Rarement - Difficile pour moi', value: 2 },
+            { text: 'Parfois - Quand c\'est nécessaire', value: 3 },
+            { text: 'Souvent - Régulièrement', value: 4 },
+            { text: 'Toujours - J\'utilise bien la délégation', value: 5 }
+        ]
+    },
+    {
+        id: 21,
+        category: 'flexibilite',
+        question: 'Êtes-vous flexible face aux changements de plans ?',
+        options: [
+            { text: 'Pas du tout - Cela me stresse énormément', value: 1 },
+            { text: 'Peu - J\'aime les plans rigides', value: 2 },
+            { text: 'Modérément - Je peux m\'adapter', value: 3 },
+            { text: 'Souvent - Assez flexible', value: 4 },
+            { text: 'Toujours - Je m\'adapte très bien', value: 5 }
+        ]
+    },
+    {
+        id: 22,
+        category: 'concentration',
+        question: 'Pouvez-vous vous concentrer longtemps sans interruption ?',
+        options: [
+            { text: 'Non - Moins de 15 minutes', value: 1 },
+            { text: 'Difficilement - 15-30 minutes', value: 2 },
+            { text: 'Modérément - 30-60 minutes', value: 3 },
+            { text: 'Oui - 1-2 heures', value: 4 },
+            { text: 'Très bien - 2+ heures sans problème', value: 5 }
+        ]
+    },
+    {
+        id: 23,
+        category: 'finances_temps',
+        question: 'Tracez-vous comment vous dépensez votre temps ?',
+        options: [
+            { text: 'Jamais - Je ne sais pas où il va', value: 1 },
+            { text: 'Rarement - Pas vraiment', value: 2 },
+            { text: 'Parfois - Occasionnellement', value: 3 },
+            { text: 'Souvent - Régulièrement', value: 4 },
+            { text: 'Toujours - Je suis très conscient', value: 5 }
+        ]
+    },
+    {
+        id: 24,
+        category: 'evenements',
+        question: 'Planifiez-vous les événements sociaux à l\'avance ?',
+        options: [
+            { text: 'Jamais - C\'est très spontané', value: 1 },
+            { text: 'Rarement - Au dernier moment', value: 2 },
+            { text: 'Parfois - Quelques jours d\'avance', value: 3 },
+            { text: 'Souvent - Une ou deux semaines avant', value: 4 },
+            { text: 'Toujours - Je planifie bien à l\'avance', value: 5 }
+        ]
+    },
+    {
+        id: 25,
+        category: 'motivation',
+        question: 'Êtes-vous motivé dans vos activités quotidiennes ?',
+        options: [
+            { text: 'Pas du tout - C\'est une corvée', value: 1 },
+            { text: 'Peu - Manque de motivation', value: 2 },
+            { text: 'Modérément - Parfois motivé', value: 3 },
+            { text: 'Bien - Généralement motivé', value: 4 },
+            { text: 'Très - Toujours enthousiaste', value: 5 }
+        ]
+    },
+    {
+        id: 26,
+        category: 'accomplissement',
+        question: 'Accomplissez-vous vos tâches avant les délais ?',
+        options: [
+            { text: 'Jamais - Toujours en retard', value: 1 },
+            { text: 'Rarement - Souvent au dernier moment', value: 2 },
+            { text: 'Parfois - Mixture de tôt et tard', value: 3 },
+            { text: 'Souvent - Généralement à temps', value: 4 },
+            { text: 'Toujours - Régulièrement en avance', value: 5 }
+        ]
+    },
+    {
+        id: 27,
+        category: 'reflexion',
+        question: 'Réfléchissez-vous à votre utilisation du temps ?',
+        options: [
+            { text: 'Jamais - Je n\'y pense pas', value: 1 },
+            { text: 'Rarement - Très occasionnel', value: 2 },
+            { text: 'Parfois - De temps en temps', value: 3 },
+            { text: 'Souvent - Régulièrement', value: 4 },
+            { text: 'Toujours - Je réfléchis régulièrement', value: 5 }
+        ]
+    },
+    {
+        id: 28,
+        category: 'vision',
+        question: 'Avez-vous une vision claire de vos priorités à long terme ?',
+        options: [
+            { text: 'Aucune - Je vais au jour le jour', value: 1 },
+            { text: 'Floue - Une idée vague', value: 2 },
+            { text: 'Partielle - Quelques idées claires', value: 3 },
+            { text: 'Bonne - Une vision assez claire', value: 4 },
+            { text: 'Excellente - Vision très claire et définie', value: 5 }
         ]
     }
 ];
@@ -382,7 +600,25 @@ function renderCategoryScores(scores) {
         sante: 'Santé',
         developpement: 'Développement',
         satisfaction: 'Satisfaction',
-        objectifs: 'Objectifs'
+        objectifs: 'Objectifs',
+        productivite: 'Productivité',
+        loisirs: 'Loisirs',
+        travail: 'Travail',
+        sommeil: 'Sommeil',
+        technologie: 'Technologie',
+        equilibre_vie_travail: 'Équilibre V/T',
+        stress: 'Stress',
+        routine: 'Routine',
+        apprentissage: 'Apprentissage',
+        delegation: 'Délégation',
+        flexibilite: 'Flexibilité',
+        concentration: 'Concentration',
+        finances_temps: 'Finances Temps',
+        evenements: 'Événements',
+        motivation: 'Motivation',
+        accomplissement: 'Accomplissement',
+        reflexion: 'Réflexion',
+        vision: 'Vision'
     };
     
     let html = '';
@@ -450,6 +686,16 @@ function generateRecommendations(results) {
     if (results.categoryScores.developpement < 60) {
         recommendations.push('📚 Consacrez 30 minutes par jour à l\'apprentissage');
         recommendations.push('🎓 Suivez un cours en ligne ou une formation');
+    }
+    
+    if (results.categoryScores.technologie && results.categoryScores.technologie < 50) {
+        recommendations.push('🔔 Activez le mode "Ne pas déranger" pendant les heures de travail');
+        recommendations.push('⏱️ Utilisez des outils pour limiter le temps écran');
+    }
+    
+    if (results.categoryScores.stress > 60) {
+        recommendations.push('🧘 Pratiquez des techniques de relaxation quotidiennement');
+        recommendations.push('🚶 Prenez des pauses régulières pendant la journée');
     }
     
     if (recommendations.length === 0) {
