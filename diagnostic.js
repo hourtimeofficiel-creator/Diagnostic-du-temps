@@ -25,7 +25,7 @@ const diagnosticQuestions = [
         category: 'planification',
         question: 'Planifiez-vous vos journées et vos semaines ?',
         options: [
-            { text: 'Jamais - Je préfère être spontané', value: 1 },
+            { text: 'Jamais - Je préfère ��tre spontané', value: 1 },
             { text: 'Rarement - Seulement quand c\'est nécessaire', value: 2 },
             { text: 'Parfois - De façon occasionnelle', value: 3 },
             { text: 'Souvent - Régulièrement', value: 4 },
@@ -378,15 +378,22 @@ function loadResponses() {
     }
 }
 
-// Aller au diagnostic
+// Aller au diagnostic - CORRIGÉ POUR L'HTML RÉEL
 function goToDiagnostic() {
-    console.log('goToDiagnostic appelé');
-    document.getElementById('accueil').style.display = 'none';
-    document.getElementById('diagnostic').style.display = 'flex';
-    document.getElementById('resultats').style.display = 'none';
+    console.log('Démarrage du diagnostic');
+    const accueilSection = document.querySelector('.accueil-section');
+    const diagnosticSection = document.getElementById('diagnostic');
+    const resultatsSection = document.getElementById('resultats');
+    
+    if (accueilSection) accueilSection.style.display = 'none';
+    if (diagnosticSection) diagnosticSection.style.display = 'flex';
+    if (resultatsSection) resultatsSection.style.display = 'none';
+    
     state.currentQuestion = 0;
     renderQuestion();
-    document.getElementById('diagnostic').scrollIntoView({ behavior: 'smooth' });
+    if (diagnosticSection) {
+        diagnosticSection.scrollIntoView({ behavior: 'smooth' });
+    }
 }
 
 // ============================================
@@ -397,10 +404,16 @@ function renderQuestion() {
     const question = diagnosticQuestions[state.currentQuestion];
     const container = document.getElementById('questionContainer');
     
+    if (!container) {
+        console.error('Container de questions non trouvé!');
+        return;
+    }
+    
     // Construire le HTML de la question
     let html = `
-        <h3 class="question-title">${question.question}</h3>
-        <ul class="options-list">
+        <div class="question-content">
+            <h3 class="question-title">${question.question}</h3>
+            <ul class="options-list">
     `;
     
     question.options.forEach((option, index) => {
@@ -423,7 +436,10 @@ function renderQuestion() {
         `;
     });
     
-    html += '</ul>';
+    html += `
+            </ul>
+        </div>
+    `;
     container.innerHTML = html;
     
     // Mettre à jour la barre de progression
@@ -435,6 +451,7 @@ function renderQuestion() {
 function recordResponse(questionId, value) {
     state.responses[questionId] = value;
     saveResponses();
+    console.log(`Réponse enregistrée - Q${questionId}: ${value}`);
 }
 
 // Mettre à jour la barre de progression
@@ -550,9 +567,13 @@ function showResults() {
     const results = calculateResults();
     
     // Masquer les sections
-    document.getElementById('accueil').style.display = 'none';
-    document.getElementById('diagnostic').style.display = 'none';
-    document.getElementById('resultats').style.display = 'flex';
+    const accueilSection = document.querySelector('.accueil-section');
+    const diagnosticSection = document.getElementById('diagnostic');
+    const resultatsSection = document.getElementById('resultats');
+    
+    if (accueilSection) accueilSection.style.display = 'none';
+    if (diagnosticSection) diagnosticSection.style.display = 'none';
+    if (resultatsSection) resultatsSection.style.display = 'flex';
     
     // Afficher le score global
     const globalScore = document.getElementById('globalScore');
@@ -570,7 +591,9 @@ function showResults() {
     renderRecommendations(results);
     
     // Scroll vers les résultats
-    document.getElementById('resultats').scrollIntoView({ behavior: 'smooth' });
+    if (resultatsSection) {
+        resultatsSection.scrollIntoView({ behavior: 'smooth' });
+    }
 }
 
 function isAllAnswered() {
@@ -719,11 +742,17 @@ function restartDiagnostic() {
     localStorage.removeItem('currentQuestion');
     
     // Afficher les sections appropriées
-    document.getElementById('accueil').style.display = 'flex';
-    document.getElementById('diagnostic').style.display = 'none';
-    document.getElementById('resultats').style.display = 'none';
+    const accueilSection = document.querySelector('.accueil-section');
+    const diagnosticSection = document.getElementById('diagnostic');
+    const resultatsSection = document.getElementById('resultats');
     
-    document.getElementById('accueil').scrollIntoView({ behavior: 'smooth' });
+    if (accueilSection) accueilSection.style.display = 'flex';
+    if (diagnosticSection) diagnosticSection.style.display = 'none';
+    if (resultatsSection) resultatsSection.style.display = 'none';
+    
+    if (accueilSection) {
+        accueilSection.scrollIntoView({ behavior: 'smooth' });
+    }
 }
 
 function downloadResults() {
@@ -978,9 +1007,13 @@ function initDiagnostic() {
     loadResponses();
     
     // Afficher la section accueil par défaut
-    document.getElementById('accueil').style.display = 'flex';
-    document.getElementById('diagnostic').style.display = 'none';
-    document.getElementById('resultats').style.display = 'none';
+    const accueilSection = document.querySelector('.accueil-section');
+    const diagnosticSection = document.getElementById('diagnostic');
+    const resultatsSection = document.getElementById('resultats');
+    
+    if (accueilSection) accueilSection.style.display = 'flex';
+    if (diagnosticSection) diagnosticSection.style.display = 'none';
+    if (resultatsSection) resultatsSection.style.display = 'none';
     
     // Si on a des réponses sauvegardées
     if (Object.keys(state.responses).length > 0) {
@@ -989,8 +1022,8 @@ function initDiagnostic() {
             showResults();
         } else {
             // Continuer où on s'était arrêté
-            document.getElementById('accueil').style.display = 'none';
-            document.getElementById('diagnostic').style.display = 'flex';
+            if (accueilSection) accueilSection.style.display = 'none';
+            if (diagnosticSection) diagnosticSection.style.display = 'flex';
             renderQuestion();
         }
     }
