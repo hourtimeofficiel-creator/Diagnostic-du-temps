@@ -12,7 +12,6 @@
     <meta property="og:url" content="https://hourtimeofficiel-creator.github.io/diagnostic-du-temps/">
     <meta property="og:title" content="HourTime - Diagnostic du Temps">
     <meta property="og:description" content="Diagnostic complet de votre relation au temps. Découvrez votre profil temporel en 10 questions.">
-    <meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23C9A45C'>⏰</text></svg>">
     
     <title>HourTime - Diagnostic du Temps</title>
     
@@ -29,36 +28,106 @@
     
     <!-- jsPDF pour la génération de PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    
-    <!-- Alternative jsPDF + jsPDF AutoTable -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <div id="app-container"></div>
+    <!-- SECTION ACCUEIL -->
+    <section id="accueil" class="section accueil-section">
+        <div class="container">
+            <div class="accueil-content">
+                <div class="accueil-emoji">⏰</div>
+                <h1 class="accueil-title">HourTime</h1>
+                <h2 class="accueil-subtitle">Diagnostic du Temps</h2>
+                <p class="accueil-description">
+                    Découvrez comment vous utilisez réellement votre temps et recevez des recommandations personnalisées pour optimiser votre vie.
+                </p>
+                <button class="btn btn-primary" onclick="goToDiagnostic()">
+                    Commencer le Diagnostic →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION DIAGNOSTIC -->
+    <section id="diagnostic" class="section diagnostic-section" style="display: none;">
+        <div class="container">
+            <div class="diagnostic-content">
+                <!-- Barre de Progression -->
+                <div class="progress-section">
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                    <div class="progress-info">
+                        Question <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span>
+                    </div>
+                </div>
+
+                <!-- Questions -->
+                <div id="questionContainer" class="question-container"></div>
+
+                <!-- Boutons de Navigation -->
+                <div class="navigation-buttons">
+                    <button id="prevBtn" class="btn btn-secondary" onclick="previousQuestion()" style="display: none;">
+                        ← Précédent
+                    </button>
+                    <button id="nextBtn" class="btn btn-primary" onclick="nextQuestion()">
+                        Suivant →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION RÉSULTATS -->
+    <section id="resultats" class="section resultats-section" style="display: none;">
+        <div class="container">
+            <div class="resultats-content">
+                <!-- Score Global -->
+                <div class="score-global">
+                    <div class="score-circle">
+                        <div class="score-value" id="globalScore">0</div>
+                        <div class="score-unit">%</div>
+                    </div>
+                    <p id="scoreDescription" class="score-description"></p>
+                </div>
+
+                <!-- Scores par Catégorie -->
+                <div class="categories-section">
+                    <h3>Scores par Catégorie</h3>
+                    <div id="categoriesGrid" class="categories-grid"></div>
+                </div>
+
+                <!-- Recommandations -->
+                <div class="recommendations-section">
+                    <h3>Vos Recommandations Personnalisées</h3>
+                    <ul id="recommendationsList" class="recommendations-list"></ul>
+                </div>
+
+                <!-- Actions -->
+                <div class="actions-section">
+                    <button class="btn btn-primary" onclick="downloadResults()">
+                        📥 Télécharger le Rapport PDF
+                    </button>
+                    <button class="btn btn-secondary" onclick="shareResults()">
+                        📤 Partager mes Résultats
+                    </button>
+                    <button class="btn btn-tertiary" onclick="restartDiagnostic()">
+                        🔄 Recommencer le Diagnostic
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2026 HourTime. Tous droits réservés. | <a href="README.md">À Propos</a> | <a href="CODE_OF_CONDUCT.md">Code de Conduite</a> | <a href="SECURITY.md">Sécurité</a></p>
+    </footer>
 
     <!-- Scripts -->
-    
-    <!-- Diagnostic Script -->
     <script src="diagnostic.js"></script>
 
-    <!-- Analytics (optionnel - décommenter si nécessaire) -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> -->
-    <!-- <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
-    </script> -->
-
-    <!-- Service Worker pour PWA (optionnel) -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            // Décommenter pour activer le mode hors ligne
-            // navigator.serviceWorker.register('/sw.js');
-        }
-    </script>
-
-    <!-- Script de fallback pour les navigateurs sans support JavaScript -->
+    <!-- Fallback -->
     <noscript>
         <div style="padding: 20px; text-align: center; background: #fff3cd; border: 1px solid #ffc107;">
             <h2>JavaScript désactivé</h2>
