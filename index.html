@@ -58,16 +58,23 @@
         }
 
         .logo-image {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             background: linear-gradient(135deg, #C9A45C 0%, #8B7539 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 100px;
             box-shadow: 0 10px 40px rgba(201, 164, 92, 0.3);
             animation: floatAnimation 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-svg {
+            width: 180px;
+            height: 180px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
         }
 
         @keyframes floatAnimation {
@@ -419,9 +426,13 @@
             }
 
             .logo-image {
-                width: 150px;
-                height: 150px;
-                font-size: 75px;
+                width: 160px;
+                height: 160px;
+            }
+
+            .logo-svg {
+                width: 130px;
+                height: 130px;
             }
 
             .diagnostic-content {
@@ -443,9 +454,81 @@
     <section id="accueil" class="section accueil-section">
         <div class="container">
             <div class="accueil-content">
-                <!-- Logo et symbole -->
+                <!-- Logo SVG Steampunk -->
                 <div class="logo-container">
-                    <div class="logo-image">⏰</div>
+                    <div class="logo-image">
+                        <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Boîtier principal de la montre à gousset -->
+                            <circle cx="100" cy="85" r="65" fill="#F5DEB3" stroke="#8B7539" stroke-width="2"/>
+                            
+                            <!-- Gradient intérieur -->
+                            <defs>
+                                <radialGradient id="watchGradient" cx="40%" cy="40%">
+                                    <stop offset="0%" style="stop-color:#FFFACD;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#F5DEB3;stop-opacity:1" />
+                                </radialGradient>
+                                <radialGradient id="gearGradient" cx="30%" cy="30%">
+                                    <stop offset="0%" style="stop-color:#C0C0C0;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#808080;stop-opacity:1" />
+                                </radialGradient>
+                            </defs>
+                            
+                            <circle cx="100" cy="85" r="63" fill="url(#watchGradient)"/>
+                            
+                            <!-- Cadran de montre -->
+                            <circle cx="100" cy="85" r="60" fill="none" stroke="#8B7539" stroke-width="1"/>
+                            
+                            <!-- Chiffres romains -->
+                            <text x="100" y="35" font-size="12" font-weight="bold" text-anchor="middle" fill="#8B7539">XII</text>
+                            <text x="155" y="90" font-size="12" font-weight="bold" text-anchor="middle" fill="#8B7539">III</text>
+                            <text x="100" y="140" font-size="12" font-weight="bold" text-anchor="middle" fill="#8B7539">VI</text>
+                            <text x="45" y="90" font-size="12" font-weight="bold" text-anchor="middle" fill="#8B7539">IX</text>
+                            
+                            <!-- Aiguilles de la montre -->
+                            <line x1="100" y1="85" x2="100" y2="55" stroke="#8B4513" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="100" y1="85" x2="120" y2="85" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="100" cy="85" r="4" fill="#8B4513"/>
+                            
+                            <!-- Courroie supérieure -->
+                            <rect x="85" y="5" width="30" height="20" fill="#D3D3D3" stroke="#8B7539" stroke-width="1" rx="3"/>
+                            <circle cx="92" cy="10" r="3" fill="#C0C0C0"/>
+                            <circle cx="108" cy="10" r="3" fill="#C0C0C0"/>
+                            
+                            <!-- Engrenages visibles (steampunk) -->
+                            <!-- Grand engrenage -->
+                            <circle cx="145" cy="130" r="18" fill="url(#gearGradient)" stroke="#696969" stroke-width="1.5"/>
+                            <circle cx="145" cy="130" r="14" fill="none" stroke="#696969" stroke-width="1"/>
+                            <!-- Dents du grand engrenage -->
+                            <rect x="143" y="110" width="4" height="4" fill="#696969"/>
+                            <rect x="147" y="110" width="4" height="4" fill="#696969"/>
+                            <rect x="151" y="115" width="4" height="4" fill="#696969"/>
+                            <rect x="153" y="125" width="4" height="4" fill="#696969"/>
+                            <rect x="151" y="142" width="4" height="4" fill="#696969"/>
+                            <rect x="147" y="148" width="4" height="4" fill="#696969"/>
+                            <rect x="137" y="148" width="4" height="4" fill="#696969"/>
+                            <rect x="133" y="142" width="4" height="4" fill="#696969"/>
+                            <rect x="131" y="125" width="4" height="4" fill="#696969"/>
+                            <rect x="133" y="115" width="4" height="4" fill="#696969"/>
+                            <circle cx="145" cy="130" r="5" fill="#696969"/>
+                            
+                            <!-- Petit engrenage -->
+                            <circle cx="110" cy="155" r="12" fill="url(#gearGradient)" stroke="#696969" stroke-width="1.5"/>
+                            <circle cx="110" cy="155" r="9" fill="none" stroke="#696969" stroke-width="1"/>
+                            <!-- Dents du petit engrenage -->
+                            <rect x="109" y="141" width="3" height="3" fill="#696969"/>
+                            <rect x="113" y="141" width="3" height="3" fill="#696969"/>
+                            <rect x="121" y="153" width="3" height="3" fill="#696969"/>
+                            <rect x="121" y="157" width="3" height="3" fill="#696969"/>
+                            <rect x="113" y="168" width="3" height="3" fill="#696969"/>
+                            <rect x="109" y="168" width="3" height="3" fill="#696969"/>
+                            <rect x="99" y="157" width="3" height="3" fill="#696969"/>
+                            <rect x="99" y="153" width="3" height="3" fill="#696969"/>
+                            <circle cx="110" cy="155" r="3" fill="#696969"/>
+                            
+                            <!-- Écrou de centre -->
+                            <circle cx="100" cy="85" r="6" fill="#C0C0C0" stroke="#696969" stroke-width="0.5"/>
+                        </svg>
+                    </div>
                     <div class="logo-text">Symbole</div>
                 </div>
 
