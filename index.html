@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="HourTime Diagnostic - Comprenez votre relation au temps en 28 questions. Diagnostic complet avec rapport PDF personnalisé.">
+    <meta name="description" content="HourTime Diagnostic - Comprenez votre relation au temps en 10 questions. Diagnostic complet avec rapport PDF personnalisé.">
     <meta name="keywords" content="diagnostic temps, gestion du temps, productivité, alignement personnel">
     <meta name="theme-color" content="#0D0D0F">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://diagnostic-du-temps.hourtime.fr">
+    <meta property="og:url" content="https://hourtimeofficiel-creator.github.io/diagnostic-du-temps/">
     <meta property="og:title" content="HourTime - Diagnostic du Temps">
-    <meta property="og:description" content="Diagnostic complet de votre relation au temps. Découvrez votre profil temporel en 28 questions.">
-    <meta property="og:image" content="/assets/og-image.png">
+    <meta property="og:description" content="Diagnostic complet de votre relation au temps. Découvrez votre profil temporel en 10 questions.">
+    <meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23C9A45C'>⏰</text></svg>">
     
     <title>HourTime - Diagnostic du Temps</title>
     
@@ -20,7 +20,7 @@
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23C9A45C'>⏰</text></svg>">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,21 +36,10 @@
 <body>
     <div id="app-container"></div>
 
-    <!-- Scripts (ordre important pour les dépendances) -->
+    <!-- Scripts -->
     
-    <!-- 1. Configuration de base -->
-    <script type="module">
-        // Vérification du support ES6 Modules
-        if (!('noModule' in HTMLScriptElement.prototype)) {
-            document.body.innerHTML = '<h1>Erreur : Votre navigateur n\'est pas compatible. Veuillez utiliser une version récente.</h1>';
-        }
-    </script>
-    
-    <!-- 2. Modules de l'application (ordre d'import respecté) -->
-    <script type="module">
-        // Les imports sont gérés par app.js qui importe tous les modules nécessaires
-        import './js/app.js';
-    </script>
+    <!-- Diagnostic Script -->
+    <script src="diagnostic.js"></script>
 
     <!-- Analytics (optionnel - décommenter si nécessaire) -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> -->
@@ -69,7 +58,7 @@
         }
     </script>
 
-    <!-- Script de fallback pour les navigateurs sans support ES6 -->
+    <!-- Script de fallback pour les navigateurs sans support JavaScript -->
     <noscript>
         <div style="padding: 20px; text-align: center; background: #fff3cd; border: 1px solid #ffc107;">
             <h2>JavaScript désactivé</h2>
