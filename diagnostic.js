@@ -164,11 +164,13 @@ function loadResponses() {
 
 // Aller au diagnostic
 function goToDiagnostic() {
-    document.getElementById('accueil').scrollIntoView({ behavior: 'smooth' });
-    setTimeout(() => {
-        document.getElementById('diagnostic').scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    console.log('goToDiagnostic appelé');
+    document.getElementById('accueil').style.display = 'none';
+    document.getElementById('diagnostic').style.display = 'flex';
+    document.getElementById('resultats').style.display = 'none';
+    state.currentQuestion = 0;
     renderQuestion();
+    document.getElementById('diagnostic').scrollIntoView({ behavior: 'smooth' });
 }
 
 // ============================================
@@ -222,9 +224,14 @@ function recordResponse(questionId, value) {
 // Mettre à jour la barre de progression
 function updateProgress() {
     const progress = ((state.currentQuestion + 1) / diagnosticQuestions.length) * 100;
-    document.getElementById('progressFill').style.width = progress + '%';
-    document.getElementById('currentQuestion').textContent = state.currentQuestion + 1;
-    document.getElementById('totalQuestions').textContent = diagnosticQuestions.length;
+    const progressFill = document.getElementById('progressFill');
+    if (progressFill) progressFill.style.width = progress + '%';
+    
+    const currentQ = document.getElementById('currentQuestion');
+    if (currentQ) currentQ.textContent = state.currentQuestion + 1;
+    
+    const totalQ = document.getElementById('totalQuestions');
+    if (totalQ) totalQ.textContent = diagnosticQuestions.length;
 }
 
 // Mettre à jour les boutons de navigation
@@ -232,14 +239,16 @@ function updateNavigationButtons() {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     
-    // Afficher/masquer le bouton précédent
-    prevBtn.style.display = state.currentQuestion > 0 ? 'inline-flex' : 'none';
+    if (prevBtn) {
+        prevBtn.style.display = state.currentQuestion > 0 ? 'inline-flex' : 'none';
+    }
     
-    // Changer le texte du bouton suivant
-    if (state.currentQuestion === diagnosticQuestions.length - 1) {
-        nextBtn.textContent = 'Voir les résultats ✓';
-    } else {
-        nextBtn.textContent = 'Suivant →';
+    if (nextBtn) {
+        if (state.currentQuestion === diagnosticQuestions.length - 1) {
+            nextBtn.textContent = 'Voir les résultats ✓';
+        } else {
+            nextBtn.textContent = 'Suivant →';
+        }
     }
 }
 
@@ -324,20 +333,19 @@ function showResults() {
     
     const results = calculateResults();
     
-    // Masquer la section diagnostic
-    document.getElementById('diagnostic').style.display = 'none';
+    // Masquer les sections
     document.getElementById('accueil').style.display = 'none';
-    
-    // Afficher la section résultats
+    document.getElementById('diagnostic').style.display = 'none';
     document.getElementById('resultats').style.display = 'flex';
     
     // Afficher le score global
     const globalScore = document.getElementById('globalScore');
-    globalScore.textContent = results.averageScore;
+    if (globalScore) globalScore.textContent = results.averageScore;
     
     // Description du score
     const description = getScoreDescription(results.averageScore);
-    document.getElementById('scoreDescription').textContent = description;
+    const scoreDesc = document.getElementById('scoreDescription');
+    if (scoreDesc) scoreDesc.textContent = description;
     
     // Afficher les catégories
     renderCategoryScores(results.categoryScores);
@@ -388,7 +396,7 @@ function renderCategoryScores(scores) {
         `;
     });
     
-    grid.innerHTML = html;
+    if (grid) grid.innerHTML = html;
 }
 
 // Afficher les recommandations
@@ -401,7 +409,7 @@ function renderRecommendations(results) {
         html += `<li>${rec}</li>`;
     });
     
-    list.innerHTML = html;
+    if (list) list.innerHTML = html;
 }
 
 // Générer les recommandations
@@ -467,13 +475,11 @@ function restartDiagnostic() {
     localStorage.removeItem('currentQuestion');
     
     // Afficher les sections appropriées
-    document.getElementById('diagnostic').style.display = 'flex';
     document.getElementById('accueil').style.display = 'flex';
+    document.getElementById('diagnostic').style.display = 'none';
     document.getElementById('resultats').style.display = 'none';
     
-    // Réinitialiser et afficher la première question
-    renderQuestion();
-    document.getElementById('diagnostic').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('accueil').scrollIntoView({ behavior: 'smooth' });
 }
 
 function downloadResults() {
@@ -550,20 +556,32 @@ function shareResults() {
 // INITIALISATION
 // ============================================
 
-document.addEventListener('DOMContentLoaded', () => {
+function initDiagnostic() {
+    console.log('Diagnostic initialisé');
     loadResponses();
     
-    // Si on a des réponses sauvegardées, aller à la dernière question
+    // Afficher la section accueil par défaut
+    document.getElementById('accueil').style.display = 'flex';
+    document.getElementById('diagnostic').style.display = 'none';
+    document.getElementById('resultats').style.display = 'none';
+    
+    // Si on a des réponses sauvegardées
     if (Object.keys(state.responses).length > 0) {
         if (Object.keys(state.responses).length === diagnosticQuestions.length) {
             // Toutes les questions ont été répondues
             showResults();
         } else {
             // Continuer où on s'était arrêté
+            document.getElementById('accueil').style.display = 'none';
+            document.getElementById('diagnostic').style.display = 'flex';
             renderQuestion();
         }
-    } else {
-        // Première visite
-        renderQuestion();
     }
-});
+}
+
+// Attendre que le DOM soit chargé
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDiagnostic);
+} else {
+    initDiagnostic();
+}
